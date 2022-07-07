@@ -46,6 +46,20 @@ app.get("/error500", (req, res) => {
   res.status(500).end();
 });
 
+app.get("/blog/:year/:month/:day?", (req, res) => {
+  if (req.query.format.data === "html") {
+    return res.send(
+      `<h1>${req.params.day || "01"}.${req.params.month}.${req.params.year}<h1>`
+    );
+  }
+
+  res.send({
+    year: req.params.year - 0,
+    month: req.params.month - 0,
+    day: req.params.day || "01" - 0,
+  });
+});
+
 const server = http.createServer(app);
 
 app.listen(port, () => {
