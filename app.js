@@ -41,6 +41,11 @@ app.get("/people", (req, res) => {
   res.send(people);
 });
 
+app.get("/error500", (req, res) => {
+  // TODO: Resolve Magic Number to a const
+  res.status(500).end();
+});
+
 const server = http.createServer(app);
 
 app.listen(port, () => {
