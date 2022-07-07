@@ -7,6 +7,11 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`);
+  next();
+});
+
 app.get("/", (req, res) => {
   const hello = "Hallo Welt!";
 
@@ -47,7 +52,7 @@ app.get("/error500", (req, res) => {
 });
 
 app.get("/blog/:year/:month/:day?", (req, res) => {
-  if (req.query.format.data === "html") {
+  if (req.query.format === "html") {
     return res.send(
       `<h1>${req.params.day || "01"}.${req.params.month}.${req.params.year}<h1>`
     );
