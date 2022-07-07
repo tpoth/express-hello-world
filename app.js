@@ -1,6 +1,7 @@
 "use strict";
 
 const http = require("http");
+const path = require("path");
 
 const express = require("express");
 
@@ -11,11 +12,9 @@ const port = 3000;
 
 app.use(logger({ level: "debug" }));
 
-app.get("/", (req, res) => {
-  const hello = "Hallo Welt!";
+const clientDirectory = path.join(__dirname, "client");
 
-  res.send(hello);
-});
+app.use("/", express.static(clientDirectory));
 
 app.get("/person", (req, res) => {
   const person = {
