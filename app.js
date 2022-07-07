@@ -4,13 +4,12 @@ const http = require("http");
 
 const express = require("express");
 
+const logger = require("./logger");
+
 const app = express();
 const port = 3000;
 
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.path}`);
-  next();
-});
+app.use(logger({ level: "debug" }));
 
 app.get("/", (req, res) => {
   const hello = "Hallo Welt!";
