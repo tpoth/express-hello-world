@@ -1,0 +1,22 @@
+{
+  "name": "@tpoth/express-hello-world",
+  "version": "0.0.0",
+  "description": "Hello World written with version 4.x of Express.",
+  "keywords": [
+    "express",
+    "hello world"
+  ],
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "Thomas Poth <thomas.poth@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.18.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tpoth/express-hello-world"
+  }
+}
