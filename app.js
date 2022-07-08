@@ -1,16 +1,19 @@
 "use strict";
 
-const http = require("http");
-const path = require("path");
+const http = require("http"),
+  path = require("path");
 
 const bodyParser = require("body-parser"),
   cookieParser = require("cookie-parser"),
+  cors = require("cors"),
   express = require("express");
 
 const logger = require("./logger");
 
 const app = express();
 const port = 3000;
+
+app.use(cors());
 
 app.use(
   bodyParser.json({
