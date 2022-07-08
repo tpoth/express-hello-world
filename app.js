@@ -3,12 +3,20 @@
 const http = require("http");
 const path = require("path");
 
-const express = require("express");
+const bodyParser = require("body-parser"),
+  express = require("express");
 
 const logger = require("./logger");
 
 const app = express();
 const port = 3000;
+
+app.use(
+  bodyParser.json({
+    limit: "100kb",
+    strict: true,
+  })
+);
 
 app.use(logger({ level: "debug" }));
 
@@ -23,6 +31,10 @@ app.get("/person", (req, res) => {
   };
 
   res.send(person);
+});
+
+app.post("/person", (req, res) => {
+  res.send(`Hallo ${req.body.firstName}!`);
 });
 
 app.get("/people", (req, res) => {
