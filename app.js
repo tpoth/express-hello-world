@@ -4,6 +4,7 @@ const http = require("http");
 const path = require("path");
 
 const bodyParser = require("body-parser"),
+  cookieParser = require("cookie-parser"),
   express = require("express");
 
 const logger = require("./logger");
@@ -18,13 +19,32 @@ app.use(
   })
 );
 
+app.use(cookieParser("secret"));
+
 app.use(logger({ level: "debug" }));
 
 const clientDirectory = path.join(__dirname, "client");
 
 app.use("/", express.static(clientDirectory));
 
+app.get("/hello", (req, res) => {
+  res
+    .cookie("user", "jane doe", {
+      maxAge: 24 * 60 * 60 * 1000,
+      secure: false,
+      httpOnly: true,
+      signed: false,
+    })
+    .send("Hallo Welt!");
+});
+
 app.get("/person", (req, res) => {
+  const user = req.cookies.user;
+  const userSIgned = req.signedCookies.user;
+
+  console.log(`Cookie of user: ${user}`);
+  console.log(`Signed cookie of user: ${userSIgned}`);
+
   const person = {
     firstName: "Jane",
     lastName: "Doe",
