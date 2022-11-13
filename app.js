@@ -101,5 +101,5 @@ app.get("/blog/:year/:month/:day?", (req, res) => {
 const server = http.createServer(app);
 
 app.listen(port, () => {
-  console.log(`Example app is listening on port ${port}`);
+  console.log(`Example app does listen on port ${port}`);
 });
