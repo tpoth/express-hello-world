@@ -38,7 +38,7 @@ app.get("/hello", (req, res) => {
       httpOnly: true,
       signed: false,
     })
-    .send("Hallo Welt!");
+    .send("Hallo, Welt!");
 });
 
 app.get("/person", (req, res) => {
